@@ -15,7 +15,7 @@ public class ServerRmi {
 		// TODO Auto-generated method stub
 		try {
 			Election a = new ElectionServant();
-			a.setCandidate(setCandidates("senadores.csv"));
+			a.setCandidate(setCandidates("../senadores.csv"));
 			Election stub = (Election) UnicastRemoteObject.exportObject(a, 0);
 			
 			

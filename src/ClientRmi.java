@@ -40,7 +40,6 @@ public class ClientRmi {
 		}
 		
 		} catch (RemoteException e) {
-			e.printStackTrace();
 			tryConnect();
 		} catch (NoSuchAlgorithmException e) {
 			
