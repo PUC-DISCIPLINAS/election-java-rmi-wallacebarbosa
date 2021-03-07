@@ -1,0 +1,4 @@
+@echo 
+rmiregistry
+ 
+ pause
