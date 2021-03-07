@@ -3,75 +3,49 @@
 
 ## Autor
 ### Wallace Barbosa 
-🏁 Tópicos
-=================
-
-* [Sobre](#sobre)
-    * [Descrição do Projeto](#Descrição)
-    * [Pré-requisitos](#Pré-requisitos)
-    * [Classes](#Classes)
-* [Tecnologias](#Tecnologias)
-* [Autor](#Autor)
-* [License](#License)
 
 
 ## Sobre o projeto
-### Descrição do Projeto
-Foi desenvolvido uma aplicação de eleição utilizando o protocolo RMI (JAVA) através da linguagem JAVA.
-Além disto técnicas como programação tolerante a falhas foram utilizados, de forma a tornar o client-side exactly-once.
+### Requisitos do Projeto
+Considere uma interface Election que fornece dois métodos remotos:
+
+vote(String eleitor, String candidato):
+String eleitor: código hash MD5 gerado a partir do nome completo do eleitor.
+String candidato: String de 3 caracteres numéricos que identificam um candidato.
+result(String candidato): este método possui dois parâmetros com os quais o servidor recebe o número de um candidato e retorna para o cliente o número de votos desse candidato.
+Os identificadores de eleitor devem ser gerados a partir de uma função MD5 do nome completo do eleitor.
+O sistema deve carregar a lista de candidatos a partir do arquivo senadores.csvPré-visualizar o documento  
+Desenvolva um sistema para o serviço Election utilizando o Java RMI, que garanta que seus registros permaneçam consistentes quando ele é acessado simultaneamente por vários clientes.
+
+O serviço Election deve garantir que todos os votos sejam armazenados com segurança, mesmo quando o processo servidor falha.
+
+Considerando que o Java RMI possui semântica at-most-once, implemente um mecanismo de recuperação de falha no cliente que consiga obter uma semântica exactly-once para o caso do serviço ser interrompido por um tempo inferior a 30 segundos.
 
 ### Pré-requisitos
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Java JDK 1.8](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html).
 
-### 🎲 Rodando o Back End (Servidor)
-```bash
-# Clone este repositório
-$ git clone <https://github.com/PUC-DISCIPLINAS/election-java-rmi-germano-carlos.git>
+### 🎲 Rodando o (Servidor)
+```console
 
 # Acesse a pasta de arquivos binários do projeto no terminal/cmd
-$ cd out/production/election-java-rmi-germano-carlos
+ cd election-java-rmi-wallacebarbosa/bin
 
-# Insira o comando e veja se o arquivo .bat referente ao servidor (ServerSideBAT.bat) foi aberto
-$  start ServerSideBAT.bat
+# Insira o comando e veja se o arquivo .bat referente ao servidor foi aberto
+$  start servidor
 ```
 
-### 🎲 Rodando o Back End (Cliente)
-```bash
-# Clone este repositório
-$ git clone <https://github.com/PUC-DISCIPLINAS/election-java-rmi-germano-carlos.git>
+### 🎲 Rodando o (Cliente)
+```console
 
 # Acesse a pasta de arquivos binários do projeto no terminal/cmd
-$ cd out/production/election-java-rmi-germano-carlos
+$ cd election-java-rmi-wallacebarbosa/bin
 
-# Insira o comando e veja se o arquivo .bat referente ao client (Eleitor)(ClientSideBAT.bat) foi aberto
-$ start ClientSideBAT.bat
+# Insira o comando e veja se o arquivo .bat referente ao client foi aberto
+$ start client {Name || result} {CandidateNumber}
 ```
 
 
-## Classes
-#### 📚 EleicaoServer: Classe referente ao servidor alocado para receber as requisições. Utilizado o protocolo RMI para a criação deste servidor.
 
-#### 📕 Eleicao: Interface utilizada para declaração de metodos bases e abstratos. Estes serão sobreescritos pelas classes estendidas.
-
-#### 📘 EleicaoServant: Classe que implementa RemoteObject (RMI) e estende a interface Eleicao. Nesta classe possui a lógica e definição de recebimento e retorno de parametros para o cliente.
-
-#### 📗 Candidato: Classe que conterá atributos referentes aos candidatos a eleição
-
-#### 📙 EleitorClient: Classe que será responsável por conter o "client" do eleitor. Através dessa classe ofereceremos as possibilidades de ações, conectaremos ele ao objeto remoto e faremos a lógica de requisições e semantic-call ("exactly-once") 
-
-#### 📚 Voto: Classe responsável por guardar alguns atributos do voto como "Computado" / "Usuário". Estes valores irão para o Cache de forma a serem recuperados mais facilmente posteriormente.
-
-#### 📒 Cache: Classe que guardará os valores e fará a lógica do cache. Os valores ficarão no cache durante 30segundos, após este tempo o item será removido, e limpado.
-
-#### 📓 ItemCache: Classe que conterá o "Item" que irá para o cache, ele é generico de forma a conseguir receber qualquer tipo de informação
-
-#### 📔 Utils: Classe que será responsável por gerenciar as Utilidades do código. Algumas funções de helper foram utilizadas, como a validação do tempo do cache e Encriptação em MD5
-
-
-## Tecnologias
-
-As seguintes ferramentas foram usadas na construção do projeto:
-- [Java]
 
 
